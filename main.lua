@@ -1,20 +1,34 @@
 -- Load some default values for our rectangle.
 function love.load()
+
     -- Requires
-    cf = require "lib.colorFactory"
-    -- Draw the character
-    love.graphics.setDefaultFilter("nearest", "nearest")
+    cf = require "lib.colorfactory.colorFactory"
+    suit = require "lib.suit"
+    hc = require "lib.hc"
+
     -- Options
-    scaling = 4
+    -- Set pixel graphics filtering
+    love.graphics.setDefaultFilter("nearest", "nearest")
+    scaling = 6
+    -- Fix and set SUIT colors
+    suit.theme.color = {
+        normal   = {bg = { 0.258823529, 0.258823529, 0.258823529}, fg = {0.737254902,0.737254902,0.737254902}},
+        hovered  = {bg = { 0.196078431,0.6,0.733333333}, fg = {1,1,1}},
+        active   = {bg = {1,0.6,  0}, fg = {1,1,1}}
+    }
+
     -- Player 1 options
     p1 = {}
     p1.sprite = love.graphics.newImage("img/slime01.png")
     p1.x = 200
-    p1.y = 536
+    p1.y = 384
+
     -- Player 2 options
-    -- Draw ball
+
+
+    -- Ball options
     ball = {}
-    ball.size = 4
+    ball.size = 2
     canvas = love.graphics.newCanvas(300, 300)
     love.graphics.setCanvas(canvas)
     love.graphics.circle("fill", ball.size, ball.size, ball.size)
