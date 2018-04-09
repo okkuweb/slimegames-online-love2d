@@ -92,14 +92,14 @@ function jump(p)
 	-- initiate jump
 	if btn(2,p.index) and not p.jstate then
 		p.jstate = true
- 	p.y -= p.jspeed
+        p.y -= p.jspeed
 	end
 	
 	-- produce jump motion
 	if p.y < p.yinit then
 		p.jstate = true
 		p.jspeed -= p.jgravity
- 	p.y -= p.jspeed
+        p.y -= p.jspeed
 	else
 		-- reset jump parameters
 		p.jstate = false
@@ -157,26 +157,24 @@ function player_hit(p)
 	end
 	
 	-- if hit
-	if b.y < p.y + size
-				and
-				distance<=size/2+b.radius
-				and
-				not p.timeout
-				then
-		occurrence += 1
- 	b.angle = atan2(
- 												p.x+p.xmid-b.x,
- 												p.y+p.ymid-b.y
- 											)
- 	x_side = cos(b.angle)*b.hitspeed
- 	y_side = sin(b.angle)*b.hitspeed
- 	
- 	b.xspeed = -x_side
- 	b.yspeed = -y_side
+    if b.y < p.y + size
+        and distance<=size/2+b.radius
+        and not p.timeout
+        then
+        occurrence += 1
+        b.angle = atan2(
+            p.x+p.xmid-b.x,
+            p.y+p.ymid-b.y
+        )
+        x_side = cos(b.angle)*b.hitspeed
+        y_side = sin(b.angle)*b.hitspeed
 
-		p.timeout = true
-		p.time = 0
-	end
+        b.xspeed = -x_side
+        b.yspeed = -y_side
+
+        p.timeout = true
+        p.time = 0
+    end
 end
 
 function _draw()

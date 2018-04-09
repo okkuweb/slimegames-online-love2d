@@ -9,3 +9,5 @@
 - https://github.com/bartbes/love-misc-libs
 - https://gafferongames.com/tags/networking/
 - https://github.com/vrld/hump
+
+- Make it so that the ball doesn't start clipping underground and that it always bounces slightly upwards??? or something
