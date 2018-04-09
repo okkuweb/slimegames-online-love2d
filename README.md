@@ -7,3 +7,5 @@
 - https://love2d.org/wiki/Canvas
 - https://love2d.org/forums/viewtopic.php?t=2479
 - https://github.com/bartbes/love-misc-libs
+- https://gafferongames.com/tags/networking/
+- https://github.com/vrld/hump
