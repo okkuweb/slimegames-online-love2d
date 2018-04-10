@@ -158,6 +158,10 @@ function ballCollisionCheck()
     local cFloorCheck = ball.collider:collidesWith(cFloor.collider)
     if cFloorCheck then
         ball.ySpeed = -ball.ySpeed
+        -- A dirty hack to stop the ball from getting stuck to the ground
+        if ball.ySpeed > 0 then
+            ball.ySpeed = -2
+        end
     end
 
     -- Check wall collision
