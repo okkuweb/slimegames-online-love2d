@@ -1,6 +1,7 @@
--- Load some default values for our rectangle.
-function love.load()
+-- Slime Games Online
+-- By Oskari
 
+function love.load()
     -- External requires
     cf = require "lib.colorfactory.colorFactory"
     hc = require "lib.hc"
