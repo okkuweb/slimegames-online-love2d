@@ -1,88 +1,17 @@
 -- Load some default values for our rectangle.
 function love.load()
 
-    -- Requires
+    -- External requires
     cf = require "lib.colorfactory.colorFactory"
-    suit = require "lib.suit"
     hc = require "lib.hc"
+    suit = require "lib.suit"
     socket = require "socket"
 
-    -- Options
-    -- Set pixel graphics filtering
-    love.graphics.setDefaultFilter("nearest", "nearest")
-    scaling = 6
-
-    -- GLOBALS
-    -- Scene options
-    screen = {}
-    screen.width = love.graphics.getWidth()
-    screen.height = love.graphics.getHeight()
-
-    -- Player 1 options
-    p1 = {}
-    p1.sprite = love.graphics.newImage("img/slime01.png")
-    p1.x = 200
-    p1.y = 384
-    p1.xMid = p1.sprite:getWidth() / 2 * scaling
-    p1.yMid = p1.sprite:getHeight() / 2 * scaling + 20
-    p1.jumpSpeed = 15
-    p1.jumpState = false
-    p1.collisionState = false
-    p1.gravity = 0.8
-    p1.ySpeed = 0
-    p1.xSpeed = 0
-    p1.right = "d"
-    p1.left = "a"
-    p1.up = "w"
-
-    -- Player 2 options
-    p2 = {}
-    p2.sprite = love.graphics.newImage("img/slime02.png")
-    p2.x = 400
-    p2.y = 384
-    p2.xMid = p2.sprite:getWidth() / 2 * scaling
-    p2.yMid = p2.sprite:getHeight() / 2 * scaling + 20
-    p2.jumpSpeed = 15
-    p2.jumpState = false
-    p2.collisionState = false
-    p2.gravity = 0.8
-    p2.ySpeed = 0
-    p2.xSpeed = 0
-    p2.right = "l"
-    p2.left = "j"
-    p2.up = "i"
-
-    -- Ball options
-    ball = {}
-    ball.size = 2
-    ball.x = 90
-    ball.y = 90
-    ball.xMid = ball.size * scaling
-    ball.yMid = ball.size * scaling
-    ball.xSpeed = 0
-    ball.ySpeed = 0
-    ball.hitSpeed = 10
-    ball.gravity = 0.2
-    canvas = love.graphics.newCanvas(300, 300)
-    love.graphics.setCanvas(canvas)
-    love.graphics.circle("fill", ball.size, ball.size, ball.size)
-    love.graphics.setCanvas()
-
-    -- Create static colliders
-    cFloor = {}
-    cFloor.x = 0
-    cFloor.y = screen.height
-    cFloor.width = screen.width
-    cFloor.height = 50
-    cFloor.collider = hc.rectangle(
-        cFloor.x,cFloor.y,cFloor.width,cFloor.height
-    )
-    cLeftWall = hc.rectangle(
-        0,0,50,screen.height
-    )
-    cRightWall = hc.rectangle(
-        screen.width,0,-50,screen.height
-    )
+    -- Internal requires
+    require "src.init"
+    require "src.init_players"
+    require "src.init_ball"
+    require "src.init_colliders"
 end
  
 -- Increase the size of the rectangle every frame.
@@ -115,20 +44,20 @@ function updateColliders()
         ball.size*scaling
     )
     p1.collider = hc.polygon(
-        p1.x,p1.y+58,
-        p1.x,p1.y+30,
-        p1.x+30,p1.y, 
-        p1.x+65,p1.y,
-        p1.x+95,p1.y+30,
-        p1.x+95,p1.y+58
+        p1.x,p1.y+10*scaling,
+        p1.x,p1.y+5*scaling,
+        p1.x+5*scaling,p1.y, 
+        p1.x+11*scaling,p1.y,
+        p1.x+16*scaling,p1.y+6*scaling,
+        p1.x+16*scaling,p1.y+10*scaling
     )
     p2.collider = hc.polygon(
-        p2.x,p2.y+58,
-        p2.x,p2.y+30,
-        p2.x+30,p2.y, 
-        p2.x+65,p2.y,
-        p2.x+95,p2.y+30,
-        p2.x+95,p2.y+58
+        p2.x,p2.y+10*scaling,
+        p2.x,p2.y+5*scaling,
+        p2.x+5*scaling,p2.y, 
+        p2.x+11*scaling,p2.y,
+        p2.x+16*scaling,p2.y+6*scaling,
+        p2.x+16*scaling,p2.y+10*scaling
     )
 end
 
