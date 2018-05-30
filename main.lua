@@ -13,7 +13,7 @@ function love.load()
     require "src.init_players"
     require "src.init_ball"
     require "src.init_colliders"
-    require "src.netplay"
+    hub = require "src.netplay"
     controls = require "src.controls"
     colliders = require "src.colliders"
     move = require "src.move"
@@ -21,6 +21,7 @@ end
  
 -- Increase the size of the rectangle every frame.
 function love.update(dt)
+    hub:enterFrame()
     -- Handle player controls
     controls.handle(p1)
     controls.handle(p2)

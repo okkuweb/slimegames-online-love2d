@@ -1,6 +1,24 @@
 -- Networking controls and shit what am I doing :)
 
-hub = noobhub.new({ server = "127.0.0.1"; port = 1337; });
+hub = noobhub.new({ server = "127.0.0.1"; port = 1337; })
+
+hub:subscribe({
+    channel = "online",
+    callback = function(message)
+        if(message.action == "ping") then
+            print("Ping!")
+        end
+    end;
+})
+
+hub:publish({
+    message = {
+        action = "ping",
+        timestamp = love.timer.getTime()
+    }
+})
+
+return hub
 
 --[[
 
