@@ -9,3 +9,4 @@ scaling = 6
 screen = {}
 screen.width = love.graphics.getWidth()
 screen.height = love.graphics.getHeight()
+screen.state = "menu"
