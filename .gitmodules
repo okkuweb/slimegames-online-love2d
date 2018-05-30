@@ -7,3 +7,12 @@
 [submodule "lib/hc"]
 	path = lib/hc
 	url = https://github.com/vrld/HC
+[submodule "other/love-misc-libs"]
+	path = other/love-misc-libs
+	url = https://github.com/bartbes/love-misc-libs
+[submodule "lib/love-misc-libs"]
+	path = lib/love-misc-libs
+	url = https://github.com/bartbes/love-misc-libs
+[submodule "lib/NoobHub"]
+	path = lib/NoobHub
+	url = https://github.com/Overtorment/NoobHub/

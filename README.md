@@ -20,3 +20,4 @@ https://github.com/AppImage/AppImageKit/releases
 ## To-Do
 - Make it so that the ball doesn't start clipping underground and that it always bounces slightly upwards??? or something (Already did a horrible hack to somewhat remedy this)
 - Currently the ball also starts losing height each bounce on the floor? (I would guess it gets slightly stuck on the ground so there should be a check that doesn't let it trigger collision when the ball is going the other direction.... Nope wasn't it... Checked it)
+- Make the node server into an Electron application
