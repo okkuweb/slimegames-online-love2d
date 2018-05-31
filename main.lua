@@ -24,9 +24,31 @@ function love.update(dt)
         game.state = game.nextState
     end
     if game.state == "menu" then
+
+        -- Setup the main menu
         suit.layout:reset(game.width/2-70, 50, 20)
-        p1.button = suit.Button("Player 1", {align="center", valign="center"}, suit.layout:row(140,40))
-        p2.button = suit.Button("Player 2", {align="center", valign="center"}, suit.layout:row(140,40))
+        p1.button = suit.Button(
+            "Player 1",
+            {align="center", valign="center"},
+            suit.layout:row(140,40)
+        )
+        p2.button = suit.Button(
+            "Player 2",
+            {align="center", valign="center"},
+            suit.layout:row(140,40)
+        )
+        game.ipField = suit.Input(
+            game.ip,
+            {align="center", valign="center"},
+            suit.layout:row(140,40)
+        )
+        game.portField = suit.Input(
+            game.port,
+            {align="center", valign="center"},
+            suit.layout:row(140,40)
+        )
+
+
         if p1.button.hit then
             game.nextState = "online"
             game.mode = "p1"
@@ -37,6 +59,7 @@ function love.update(dt)
             game.mode = "p2"
             hub = require "src.netplay"
         end
+
     elseif game.state == "online" then
         -- Update online state
         hub:enterFrame()
@@ -100,3 +123,11 @@ function love.draw()
     end
 end
 
+-- forward keyboard events
+function love.textinput(t)
+    suit.textinput(t)
+end
+
+function love.keypressed(key)
+    suit.keypressed(key)
+end

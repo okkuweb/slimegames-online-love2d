@@ -1,6 +1,6 @@
 -- Networking controls and shit what am I doing :)
 
-hub = noobhub.new({ server = "127.0.0.1"; port = 1337; })
+hub = noobhub.new({ server = game.ip.text; port = game.port.text; })
 
 hub:subscribe({
     channel = "online",

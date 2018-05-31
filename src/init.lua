@@ -12,3 +12,5 @@ game.height = love.graphics.getHeight()
 game.state = "menu"
 game.nextState = "menu"
 game.mode = ""
+game.ip = {text = "127.0.0.1"}
+game.port = {text = "1337"}
