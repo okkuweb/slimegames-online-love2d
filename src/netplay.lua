@@ -5,17 +5,42 @@ hub = noobhub.new({ server = "127.0.0.1"; port = 1337; })
 hub:subscribe({
     channel = "online",
     callback = function(message)
-        if(message.action == "ping") then
-            print("Ping!")
+        if game.mode == "p1" then
+            if(message.player == "p2" and message.action == "hit") then
+                ball.xSpeed = message.ballXSpeed
+                ball.ySpeed = message.ballYSpeed
+                ball.x = message.ballX
+                ball.y = message.ballY
+                p2.x = message.playerX
+                p2.y = message.playerY
+                p1.YSpeed = message.playerYSpeed
+            end
+            if(message.player == "p2" and message.action == "move") then
+                p2.x = message.playerX
+                p2.y = message.playerY
+                p2.rightDown = message.right
+                p2.leftDown = message.left
+                p2.upDown = message.up
+            end
+        elseif game.mode == "p2" then
+            if(message.player == "p1" and message.action == "hit") then
+                ball.xSpeed = message.ballXSpeed
+                ball.ySpeed = message.ballYSpeed
+                ball.x = message.ballX
+                ball.y = message.ballY
+                p1.x = message.playerX
+                p1.y = message.playerY
+                p1.YSpeed = message.playerYSpeed
+            end
+            if(message.player == "p1" and message.action == "move") then
+                p1.x = message.playerX
+                p1.y = message.playerY
+                p1.rightDown = message.right
+                p1.leftDown = message.left
+                p1.upDown = message.up
+            end
         end
     end;
-})
-
-hub:publish({
-    message = {
-        action = "ping",
-        timestamp = love.timer.getTime()
-    }
 })
 
 return hub

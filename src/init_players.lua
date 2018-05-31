@@ -2,6 +2,7 @@
 
 -- Player 1 options
 p1 = {}
+p1.id = "p1"
 p1.sprite = love.graphics.newImage("img/slime01.png")
 p1.x = 200
 p1.y = 384
@@ -19,6 +20,7 @@ p1.up = "w"
 
 -- Player 2 options
 p2 = {}
+p2.id = "p2"
 p2.sprite = love.graphics.newImage("img/slime02.png")
 p2.x = 400
 p2.y = 384

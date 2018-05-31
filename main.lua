@@ -13,7 +13,6 @@ function love.load()
     require "src.init_players"
     require "src.init_ball"
     require "src.init_colliders"
-    hub = require "src.netplay"
     controls = require "src.controls"
     colliders = require "src.colliders"
     move = require "src.move"
@@ -21,14 +20,38 @@ end
  
 -- Increase the size of the rectangle every frame.
 function love.update(dt)
-    if screen.state == "menu" then
-        suit.layout:reset(screen.width/2-70, 50)
+    if game.state ~= game.nextState then
+        game.state = game.nextState
+    end
+    if game.state == "menu" then
+        suit.layout:reset(game.width/2-70, 50, 20)
         p1.button = suit.Button("Player 1", {align="center", valign="center"}, suit.layout:row(140,40))
-    elseif screen.state == "online" then
+        p2.button = suit.Button("Player 2", {align="center", valign="center"}, suit.layout:row(140,40))
+        if p1.button.hit then
+            game.nextState = "online"
+            game.mode = "p1"
+            hub = require "src.netplay"
+        end
+        if p2.button.hit then
+            game.nextState = "online"
+            game.mode = "p2"
+            hub = require "src.netplay"
+        end
+    elseif game.state == "online" then
+        -- Update online state
         hub:enterFrame()
+
         -- Handle player controls
-        controls.handle(p1)
-        controls.handle(p2)
+        if game.mode == "p1" then
+            controls.handle(p1)
+            controls.onlineHandle(p2)
+        elseif game.mode == "p2" then
+            controls.handle(p2)
+            controls.onlineHandle(p1)
+        elseif game.mode == "local" then
+            controls.handle(p1)
+            controls.handle(p2)
+        end
 
         -- Draw colliders
         colliders.update()
@@ -37,6 +60,7 @@ function love.update(dt)
         colliders.ballCheck()
         colliders.playerCheck(p1)
         colliders.playerCheck(p2)
+
 
         -- Ball movement
         move.ball()
@@ -48,9 +72,9 @@ end
 
 -- Draw a coloured rectangle.
 function love.draw()
-    if screen.state == "menu" then
+    if game.state == "menu" then
         suit.draw()
-    elseif screen.state == "online" then
+    elseif game.state == "online" then
         --Draw players
         love.graphics.setColor(cf.WHITE())
         love.graphics.draw(p1.sprite, p1.x, p1.y, 0, scaling)
@@ -65,8 +89,11 @@ function love.draw()
         love.graphics.circle("fill", p1.x+p1.xMid, p1.y+p1.yMid, ball.size)
         love.graphics.circle("fill", ball.x+ball.xMid, ball.y+ball.yMid, ball.size)
         ball.collider:draw()
-        p1.collider:draw()
-        p2.collider:draw()
+        if game.mode == "p1" then
+            p1.collider:draw()
+        elseif game.mode == "p2" then
+            p2.collider:draw()
+        end
         cFloor.collider:draw()
         cLeftWall:draw()
         cRightWall:draw()

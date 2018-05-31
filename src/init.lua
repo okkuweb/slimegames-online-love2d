@@ -6,7 +6,9 @@ love.graphics.setDefaultFilter("nearest", "nearest")
 scaling = 6
 
 -- Scene options
-screen = {}
-screen.width = love.graphics.getWidth()
-screen.height = love.graphics.getHeight()
-screen.state = "menu"
+game = {}
+game.width = love.graphics.getWidth()
+game.height = love.graphics.getHeight()
+game.state = "menu"
+game.nextState = "menu"
+game.mode = ""

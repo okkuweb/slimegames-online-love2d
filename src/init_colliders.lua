@@ -3,15 +3,15 @@
 -- Create static colliders
 cFloor = {}
 cFloor.x = 0
-cFloor.y = screen.height
-cFloor.width = screen.width
+cFloor.y = game.height
+cFloor.width = game.width
 cFloor.height = 50
 cFloor.collider = hc.rectangle(
     cFloor.x,cFloor.y,cFloor.width,cFloor.height
 )
 cLeftWall = hc.rectangle(
-    0,0,50,screen.height
+    0,0,50,game.height
 )
 cRightWall = hc.rectangle(
-    screen.width,0,-50,screen.height
+    game.width,0,-50,game.height
 )

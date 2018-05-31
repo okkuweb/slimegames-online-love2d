@@ -2,24 +2,26 @@ local colliders = {}
 
 function colliders.ballCheck()
     -- Check player collision
-    local cP1Check = ball.collider:collidesWith(p1.collider)
-    if cP1Check then
-        if p1.ballCollision ~= true then
-            playerBallCollision(p1)
+    if game.mode == "p1" then
+        local cP1Check = ball.collider:collidesWith(p1.collider)
+        if cP1Check then
+            if p1.ballCollision ~= true then
+                playerBallCollision(p1)
+            end
+            p1.ballCollision = true
+        else
+            p1.ballCollision = false
         end
-        p1.ballCollision = true
-    else
-        p1.ballCollision = false
-    end
-
-    local cP2Check = ball.collider:collidesWith(p2.collider)
-    if cP2Check then
-        if p2.ballCollision ~= true then
-            playerBallCollision(p2)
+    elseif game.mode == "p2" then
+        local cP2Check = ball.collider:collidesWith(p2.collider)
+        if cP2Check then
+            if p2.ballCollision ~= true then
+                playerBallCollision(p2)
+            end
+            p2.ballCollision = true
+        else
+            p2.ballCollision = false
         end
-        p2.ballCollision = true
-    else
-        p2.ballCollision = false
     end
  
     -- Check floor collision
@@ -50,8 +52,23 @@ function playerBallCollision(p)
 
     ball.xSpeed = -xSpeed
     ball.ySpeed = -ySpeed
-    print("Here's x speed: " .. -xSpeed)
-    print("Here's y speed: " .. -ySpeed)
+
+    if game.mode == p.id then
+        print("sent")
+        hub:publish({
+            message = {
+                player = p.id,
+                action = "hit",
+                ballXSpeed = ball.xSpeed,
+                ballYSpeed = ball.ySpeed,
+                ballX = ball.x,
+                ballY = ball.y,
+                playerX = p.x,
+                playerY = p.y,
+                playerYSpeed = p.ySpeed
+            }
+        })
+    end
 end
 
 function colliders.playerCheck(p)
