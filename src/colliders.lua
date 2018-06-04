@@ -54,7 +54,6 @@ function playerBallCollision(p)
     ball.ySpeed = -ySpeed
 
     if game.mode == p.id then
-        print("sent")
         hub:publish({
             message = {
                 player = p.id,
