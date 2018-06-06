@@ -3,7 +3,7 @@
 hub = noobhub.new({ server = game.ip.text; port = game.port.text; })
 
 hub:subscribe({
-    channel = "online",
+    channel = "netplay",
     callback = function(message)
         if game.mode == "p1" then
             if(message.player == "p2" and message.action == "hit") then
