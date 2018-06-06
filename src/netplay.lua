@@ -8,6 +8,7 @@ function netplay.init()
     hub:subscribe({
         channel = "netplay",
         callback = function(message)
+            -- Player and ball movement
             if game.mode == "p1" then
                 if(message.player == "p2" and message.action == "hit") then
                     ball.xSpeed = message.ballXSpeed
@@ -18,6 +19,7 @@ function netplay.init()
                     p2.y = message.playerY
                     p1.YSpeed = message.playerYSpeed
                 end
+
                 if(message.player == "p2" and message.action == "move") then
                     p2.x = message.playerX
                     p2.y = message.playerY
@@ -35,6 +37,7 @@ function netplay.init()
                     p1.y = message.playerY
                     p1.YSpeed = message.playerYSpeed
                 end
+
                 if(message.player == "p1" and message.action == "move") then
                     p1.x = message.playerX
                     p1.y = message.playerY
@@ -44,10 +47,31 @@ function netplay.init()
                 end
             end
 
+            -- Start game if both players are online
+            if message.action == "start" then
+                if message.player ~= game.mode then
+                    hub:publish({
+                        message = {
+                            action = "pause",
+                        }
+                    })
+                    game.pause = false
+                end
+            end
+
+            -- Toggle pause
             if message.action == "pause" then
                 game.pause = message.pause
             end
         end;
+    })
+
+    -- Start game if both players are online
+    hub:publish({
+        message = {
+            action = "start",
+            player = game.mode
+        }
     })
 
     return hub
