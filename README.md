@@ -1,21 +1,21 @@
 # Slime Games Online
 ## Links
-https://github.com/love2d-community/awesome-love2d\\
-https://docs.bartbes.com/grease\\
-https://github.com/vrld/HC\\
-http://hc.readthedocs.io/en/latest/\\
-https://love2d.org/wiki/Canvas\\
-https://love2d.org/forums/viewtopic.php?t=2479\\
-https://github.com/bartbes/love-misc-libs\\
-https://gafferongames.com/tags/networking/\\
-https://github.com/vrld/hump\\
+- https://github.com/love2d-community/awesome-love2d
+- https://docs.bartbes.com/grease
+- https://github.com/vrld/HC
+- http://hc.readthedocs.io/en/latest/
+- https://love2d.org/wiki/Canvas
+- https://love2d.org/forums/viewtopic.php?t=2479
+- https://github.com/bartbes/love-misc-libs
+- https://gafferongames.com/tags/networking/
+- https://github.com/vrld/hump
 
 ## Making an Appimage
-https://github.com/AppImage/AppImageKit/releases\\
-https://github.com/AppImage/AppImageKit/issues/629\\
-https://github.com/AppImage/AppImageKit/wiki/Creating-AppImages\\
-https://wiki.archlinux.org/index.php/desktop_entries\\
-https://github.com/AppImage/AppImageKit/releases\\
+- https://github.com/AppImage/AppImageKit/releases
+- https://github.com/AppImage/AppImageKit/issues/629
+- https://github.com/AppImage/AppImageKit/wiki/Creating-AppImages
+- https://wiki.archlinux.org/index.php/desktop_entries
+- https://github.com/AppImage/AppImageKit/releases
 
 ## To-Do
 - Make it so that the ball doesn't start clipping underground and that it always bounces slightly upwards??? or something (Already did a horrible hack to somewhat remedy this)
