@@ -26,3 +26,4 @@
 - Draw a filter overlay when game paused and sync games after unpause
 - Add countdown to unpause
 - Sometimes when the ball hits the ground, it doesn't bounce back up as much as it should and kinda just gets stuck on the ground. Might be because "the dirty hack"
+- When game is paused don't listen to control inputs (there's a saved event for jumping when paused)
