@@ -23,3 +23,6 @@
 - Add copy (and paste if you can) functionality to ip address and port fields
 - Perhaps slow the ball down or stop the ball completely with a speshul effect when waiting for a new action from the server
 - Make the channel name changeable so that more than 2 player can make a server at a time
+- Draw a filter overlay when game paused and sync games after unpause
+- Add countdown to unpause
+- Sometimes when the ball hits the ground, it doesn't bounce back up as much as it should and kinda just gets stuck on the ground. Might be because "the dirty hack"

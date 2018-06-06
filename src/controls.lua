@@ -60,4 +60,40 @@ function controls.onlineHandle(p)
     end 
 end
 
+function love.textinput(t)
+    -- Forward text input to suit
+    suit.textinput(t)
+end
+
+function love.keypressed(key)
+    -- Forward keypresses to suit
+    suit.keypressed(key)
+
+    -- Mainmenu keys
+    if game.state == "menu" then
+        if key == "escape" then
+            love.event.quit()
+        end
+    end
+
+    -- General keys gameplay keys
+    if game.state == "netplay" then
+        -- Pause game
+        if key == "escape" then
+            if  game.pause == false then
+                game.pause = true
+            elseif game.pause == true then
+                game.pause = false
+            end
+            -- Send to opponent
+            hub:publish({
+                message = {
+                    action = "pause",
+                    pause = game.pause
+                }
+            })
+        end
+    end
+end
+
 return controls

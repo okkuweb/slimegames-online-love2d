@@ -16,51 +16,21 @@ function love.load()
     controls = require "src.controls"
     colliders = require "src.colliders"
     move = require "src.move"
+    ui = require "src.ui"
+    netplay = require "src.netplay"
+    draw = require "src.draw"
 end
  
 -- Increase the size of the rectangle every frame.
 function love.update(dt)
+    -- Change game state if it has changed
     if game.state ~= game.nextState then
         game.state = game.nextState
     end
+
     if game.state == "menu" then
-
-        -- Setup the main menu
-        suit.layout:reset(game.width/2-70, 50, 20)
-        p1.button = suit.Button(
-            "Player 1",
-            {align="center", valign="center"},
-            suit.layout:row(140,40)
-        )
-        p2.button = suit.Button(
-            "Player 2",
-            {align="center", valign="center"},
-            suit.layout:row(140,40)
-        )
-        game.ipField = suit.Input(
-            game.ip,
-            {align="center", valign="center"},
-            suit.layout:row(140,40)
-        )
-        game.portField = suit.Input(
-            game.port,
-            {align="center", valign="center"},
-            suit.layout:row(140,40)
-        )
-
-
-        if p1.button.hit then
-            game.nextState = "online"
-            game.mode = "p1"
-            hub = require "src.netplay"
-        end
-        if p2.button.hit then
-            game.nextState = "online"
-            game.mode = "p2"
-            hub = require "src.netplay"
-        end
-
-    elseif game.state == "online" then
+        ui.main()
+    elseif game.state == "netplay" then
         -- Update online state
         hub:enterFrame()
 
@@ -84,50 +54,24 @@ function love.update(dt)
         colliders.playerCheck(p1)
         colliders.playerCheck(p2)
 
-
-        -- Ball movement
-        move.ball()
-        -- Player movements
-        move.player(p1)
-        move.player(p2)
+        if not game.pause then
+            -- Ball movement
+            move.ball()
+            -- Player movements
+            move.player(p1)
+            move.player(p2)
+        end
     end
 end
 
 -- Draw a coloured rectangle.
 function love.draw()
     if game.state == "menu" then
-        suit.draw()
-    elseif game.state == "online" then
-        --Draw players
-        love.graphics.setColor(cf.WHITE())
-        love.graphics.draw(p1.sprite, p1.x, p1.y, 0, scaling)
-        love.graphics.draw(p2.sprite, p2.x, p2.y, 0, scaling)
-
-        -- Draw ball
-        love.graphics.setColor(cf.hex "c2c3c7")
-        love.graphics.draw(canvas, ball.x, ball.y, 0, scaling)
-
-        -- Helpers
-        love.graphics.setColor(cf.GREEN())
-        love.graphics.circle("fill", p1.x+p1.xMid, p1.y+p1.yMid, ball.size)
-        love.graphics.circle("fill", ball.x+ball.xMid, ball.y+ball.yMid, ball.size)
-        ball.collider:draw()
-        if game.mode == "p1" then
-            p1.collider:draw()
-        elseif game.mode == "p2" then
-            p2.collider:draw()
-        end
-        cFloor.collider:draw()
-        cLeftWall:draw()
-        cRightWall:draw()
+        -- Draw the main menu
+        draw.menu()
+    elseif game.state == "netplay" then
+        -- Draw the sprites
+        draw.netplay()
     end
 end
 
--- forward keyboard events
-function love.textinput(t)
-    suit.textinput(t)
-end
-
-function love.keypressed(key)
-    suit.keypressed(key)
-end
