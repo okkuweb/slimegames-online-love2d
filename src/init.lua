@@ -15,3 +15,4 @@ game.mode = ""
 game.ip = {text = "95.216.151.49"}
 game.port = {text = "1337"}
 game.pause = true
+game.hash = love.math.random(1,10000000000)

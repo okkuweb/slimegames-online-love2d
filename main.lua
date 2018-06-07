@@ -30,6 +30,9 @@ function love.update(dt)
 
     if game.state == "menu" then
         ui.main()
+        if hub then
+            hub:enterFrame()
+        end
     elseif game.state == "netplay" then
         -- Update online state
         hub:enterFrame()
