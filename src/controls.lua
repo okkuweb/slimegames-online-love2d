@@ -1,9 +1,9 @@
 local controls = {}
 
 function controls.handle(p)
-    local right = love.keyboard.isDown(p.right)
-    local left = love.keyboard.isDown(p.left)
-    local up = love.keyboard.isDown(p.up)
+    local right = love.keyboard.isDown(p1.right)
+    local left = love.keyboard.isDown(p1.left)
+    local up = love.keyboard.isDown(p1.up)
 
     if right then
         p.xSpeed = 5
