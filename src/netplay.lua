@@ -59,12 +59,10 @@ function netplay.init()
                 end
             end
 
-            print(1)
             if game.mode == "lobby" then
                 if message.action == "ping"
                     and message.hash ~= game.hash
                     then
-                    print("im in")
 
                     if message.player == "p1" then
                         game.mode = "p2"
