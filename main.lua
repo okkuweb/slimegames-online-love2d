@@ -91,10 +91,10 @@ function love.draw()
         draw.menu()
     elseif game.state == "netplay" then
         -- Draw the sprites
-        draw.netplay()
+        draw.game()
     elseif game.state == "local" then
         -- Draw the sprites
-        draw.netplay()
+        draw.game()
     end
 end
 

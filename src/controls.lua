@@ -27,7 +27,9 @@ function controls.handle(p)
         p.jumpState = true
     end 
 
-    if hub and (p.rightDown ~= right or p.leftDown ~= left or p.upDown ~= up) then
+    if hub
+    and (p.rightDown ~= right or p.leftDown ~= left or p.upDown ~= up) 
+    then
         hub:publish({
             message = {
                 player = p.id,

@@ -4,7 +4,7 @@ function draw.menu()
     suit.draw()
 end
 
-function draw.netplay()
+function draw.game()
     -- Draw players
     love.graphics.setColor(cf.WHITE())
     love.graphics.draw(p1.sprite, p1.x, p1.y, 0, scaling)
