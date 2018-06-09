@@ -25,11 +25,8 @@ function draw.netplay()
     love.graphics.circle("fill", p1.x+p1.xMid, p1.y+p1.yMid, ball.size)
     love.graphics.circle("fill", ball.x+ball.xMid, ball.y+ball.yMid, ball.size)
     ball.collider:draw()
-    if game.mode == "p1" then
-        p1.collider:draw()
-    elseif game.mode == "p2" then
-        p2.collider:draw()
-    end
+    p1.collider:draw()
+    p2.collider:draw()
     cFloor.collider:draw()
     cLeftWall:draw()
     cRightWall:draw()

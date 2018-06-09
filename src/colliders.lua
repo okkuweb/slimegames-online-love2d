@@ -2,8 +2,8 @@ local colliders = {}
 
 function colliders.ballCheck()
     -- Check player collision
-    if game.mode == "p1" then
-        local cP1Check = ball.collider:collidesWith(p1.collider)
+    local cP1Check = ball.collider:collidesWith(p1.collider)
+    if game.mode == "p1" or game.state == "local" then
         if cP1Check then
             if p1.ballCollision ~= true then
                 playerBallCollision(p1)
@@ -12,8 +12,10 @@ function colliders.ballCheck()
         else
             p1.ballCollision = false
         end
-    elseif game.mode == "p2" then
-        local cP2Check = ball.collider:collidesWith(p2.collider)
+    end
+
+    local cP2Check = ball.collider:collidesWith(p2.collider)
+    if game.mode == "p2" or game.state == "local" then
         if cP2Check then
             if p2.ballCollision ~= true then
                 playerBallCollision(p2)

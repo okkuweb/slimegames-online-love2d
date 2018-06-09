@@ -4,8 +4,13 @@ function ui.main()
     -- Setup the main menu
     suit.layout:reset(game.width/2-70, 50, 20)
 
-    game.startButton = suit.Button(
-        "Start Game",
+    game.offlineButton = suit.Button(
+        "Start Offline",
+        {align="center", valign="center"},
+        suit.layout:row(140,40)
+    )
+    game.onlineButton = suit.Button(
+        "Start Online",
         {align="center", valign="center"},
         suit.layout:row(140,40)
     )
@@ -20,9 +25,16 @@ function ui.main()
         suit.layout:row(140,40)
     )
 
-    if game.startButton.hit then
+    if game.offlineButton.hit then
+        game.mode = "local"
+        game.nextState = "local"
+        game.pause = false
+    end
+
+    if game.onlineButton.hit then
         game.mode = "lobby"
         game.nextState = "netplay"
+        game.pause = true
         hub = netplay.init()
         hub:publish({
             message = {

@@ -1,9 +1,16 @@
 local controls = {}
 
 function controls.handle(p)
-    local right = love.keyboard.isDown(p1.right)
-    local left = love.keyboard.isDown(p1.left)
-    local up = love.keyboard.isDown(p1.up)
+    local right, left, up
+    if game.state == "netplay" then
+        right = love.keyboard.isDown(p1.right)
+        left = love.keyboard.isDown(p1.left)
+        up = love.keyboard.isDown(p1.up)
+    elseif game.state == "local" then
+        right = love.keyboard.isDown(p.right)
+        left = love.keyboard.isDown(p.left)
+        up = love.keyboard.isDown(p.up)
+    end
 
     if right then
         p.xSpeed = 5
@@ -20,7 +27,7 @@ function controls.handle(p)
         p.jumpState = true
     end 
 
-    if p.rightDown ~= right or p.leftDown ~= left or p.upDown ~= up then
+    if hub and (p.rightDown ~= right or p.leftDown ~= left or p.upDown ~= up) then
         hub:publish({
             message = {
                 player = p.id,
@@ -80,7 +87,7 @@ function love.keypressed(key)
     if game.state == "netplay" then
         -- Pause game
         if key == "escape" then
-            if  game.pause == false then
+            if game.pause == false then
                 game.pause = true
             elseif game.pause == true then
                 game.pause = false

@@ -44,14 +44,31 @@ function love.update(dt)
         elseif game.mode == "p2" then
             controls.handle(p2)
             controls.onlineHandle(p1)
-        elseif game.mode == "local" then
-            controls.handle(p1)
-            controls.handle(p2)
         end
 
         -- Draw colliders
         colliders.update()
-        
+
+        -- Collision checks
+        colliders.ballCheck()
+        colliders.playerCheck(p1)
+        colliders.playerCheck(p2)
+
+        if not game.pause then
+            -- Ball movement
+            move.ball()
+            -- Player movements
+            move.player(p1)
+            move.player(p2)
+        end
+    elseif game.state == "local" then
+        -- Handle player controls
+        controls.handle(p1)
+        controls.handle(p2)
+
+        -- Draw colliders
+        colliders.update()
+
         -- Collision checks
         colliders.ballCheck()
         colliders.playerCheck(p1)
@@ -73,6 +90,9 @@ function love.draw()
         -- Draw the main menu
         draw.menu()
     elseif game.state == "netplay" then
+        -- Draw the sprites
+        draw.netplay()
+    elseif game.state == "local" then
         -- Draw the sprites
         draw.netplay()
     end
