@@ -16,3 +16,9 @@
 [submodule "lib/NoobHub"]
 	path = lib/NoobHub
 	url = https://github.com/Overtorment/NoobHub/
+[submodule "src/lib/Lua-Color-Factory"]
+	path = src/lib/Lua-Color-Factory
+	url = https://github.com/Skeletonxf/Lua-Color-Factory
+[submodule "src/lib/HC"]
+	path = src/lib/HC
+	url = https://github.com/vrld/HC

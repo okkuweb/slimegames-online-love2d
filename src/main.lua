@@ -9,16 +9,16 @@ function love.load()
     require "lib.noobhub.noobhub"
 
     -- Internal requires
-    require "src.init"
-    require "src.init_players"
-    require "src.init_ball"
-    require "src.init_colliders"
-    controls = require "src.controls"
-    colliders = require "src.colliders"
-    move = require "src.move"
-    ui = require "src.ui"
-    netplay = require "src.netplay"
-    draw = require "src.draw"
+    require "modules.init"
+    require "modules.init_players"
+    require "modules.init_ball"
+    require "modules.init_colliders"
+    controls = require "modules.controls"
+    colliders = require "modules.colliders"
+    move = require "modules.move"
+    ui = require "modules.ui"
+    netplay = require "modules.netplay"
+    draw = require "modules.draw"
 end
  
 -- Increase the size of the rectangle every frame.
