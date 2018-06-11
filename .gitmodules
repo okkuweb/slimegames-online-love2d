@@ -1,9 +1,9 @@
-[submodule "src/lib/suit"]
-	path = src/lib/suit
-	url = https://github.com/vrld/suit
 [submodule "src/lib/colorfactory"]
 	path = src/lib/colorfactory
 	url = https://github.com/Skeletonxf/Lua-Color-Factory
 [submodule "src/lib/hc"]
 	path = src/lib/hc
 	url = https://github.com/vrld/HC
+[submodule "src/lib/suit"]
+	path = src/lib/suit
+	url = https://github.com/vrld/suit
