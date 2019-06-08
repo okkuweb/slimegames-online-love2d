@@ -1,4 +1,9 @@
+
 # Slime Games Online
+
+## Discontinued
+### This project is discontinued since löve2d doesn't run nicely on the browser
+
 ## Links
 - https://github.com/love2d-community/awesome-love2d
 - https://docs.bartbes.com/grease
