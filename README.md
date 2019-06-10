@@ -1,5 +1,6 @@
 
 # Slime Games Online
+Yet another discontinued http://slimegames.eu/ recreation attempt.
 
 ## Discontinued
 ### This project is discontinued since löve2d doesn't run nicely on the browser
