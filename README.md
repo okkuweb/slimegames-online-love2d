@@ -3,7 +3,7 @@
 Yet another discontinued http://slimegames.eu/ recreation attempt.
 
 ## Discontinued
-### This project is discontinued since löve2d doesn't run nicely on the browser
+This project is discontinued since löve2d doesn't run nicely on the browser
 
 ## Links
 - https://github.com/love2d-community/awesome-love2d
